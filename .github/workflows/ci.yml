@@ -39,5 +39,5 @@ jobs:
     - name: Run test (manually specified files)
       run: |
         cd testsuite/
-        grass -c ~/nc_spm_08_grass7/test --exec ./test_r_snowcover_stats.py
+        grass -c ~/nc_spm_08_grass7/test --exec python3 ./test_r_snowcover_stats.py
         rm -rf ~/nc_spm_08_grass7/test
