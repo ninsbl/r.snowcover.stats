@@ -22,7 +22,7 @@ class TestBasic(TestCase):
     """The main (and only) test case for the r.snowcover.stats module"""
 
     # Raster maps be used as inputs (they exist in the NC SPM sample location)
-    aoi = "./testsuite/aoi.geojson"
+    aoi = "./aoi.geojson"
     date_start = "2022-08-22"
     date_end = "2022-08-25"
 
