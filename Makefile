@@ -1,6 +1,6 @@
 MODULE_TOPDIR = ../..
 
-PGM=r.example.plus
+PGM=r.snowcover.stats
 
 include $(MODULE_TOPDIR)/include/Make/Script.make
 
