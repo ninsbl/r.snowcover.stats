@@ -544,7 +544,8 @@ def main():
     # Read images to array and compute average value over available images
     for i in images.values():
         img_ds = gdal.Open(f"/vsicurl/{i}")
-        img_ds = np.array(ds.ReadAsArray())
+        img_ds = np.array(img_ds.ReadAsArray())
+        img_ds = None
         np_snow += np.where((img_ds > 100) & (img_ds <= 200), img_ds - 100, 0)
     np_snow = np_snow / len(images)
 
