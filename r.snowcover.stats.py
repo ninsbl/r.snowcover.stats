@@ -106,7 +106,6 @@ This program is free software under the GNU General Public License
 # snow_altitude_actinia aoi=C:\data\aoi.geojson
 # Imports from builtin libs
 # import atexit
-import os
 from datetime import datetime, timedelta
 import json
 import logging
