@@ -1,17 +1,77 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>GRASS GIS Manual: r.snowcover.stats</title>
+<title>GRASS GIS manual: r.snowcover.stats</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" href="grassdocs.css" type="text/css">
 </head>
 <body bgcolor="white">
 <div id="container">
 
-<a href="file:///usr/lib/grass74/docs/html/index.html"><img src="grass_logo.png" alt="GRASS logo"></a>
+<a href="file:///usr/lib/grass78/docs/html/index.html"><img src="grass_logo.png" alt="GRASS logo"></a>
 <hr class="header">
+
 <h2>NAME</h2>
-<em><b>r.snowcover.stats</b></em>
+<em><b>r.snowcover.stats</b></em>  - Compute maximum, mean and minimum snow cover from data provided by an ImageServer
+<h2>KEYWORDS</h2>
+<a href="file:///usr/lib/grass78/docs/html/raster.html">raster</a>, <a href="file:///usr/lib/grass78/docs/html/topic_ImageServer.html">ImageServer</a>, <a href="file:///usr/lib/grass78/docs/html/keywords.html#snow">snow</a>, <a href="file:///usr/lib/grass78/docs/html/keywords.html#Sentinel-3">Sentinel-3</a>, <a href="file:///usr/lib/grass78/docs/html/keywords.html#DTM">DTM</a>, <a href="file:///usr/lib/grass78/docs/html/keywords.html#zonal statistics">zonal statistics</a>
+<h2>SYNOPSIS</h2>
+<div id="name"><b>r.snowcover.stats</b><br></div>
+<b>r.snowcover.stats --help</b><br>
+<div id="synopsis"><b>r.snowcover.stats</b> [-<b>d</b>]  [<b>image_server</b>=<em>string</em>]   [<b>dtm_service</b>=<em>string</em>]   [<b>snow_service</b>=<em>string</em>]  <b>aoi</b>=<em>name</em>  [<b>date_start</b>=<em>string</em>]   [<b>date_end</b>=<em>string</em>]   [<b>snow_bands</b>=<em>integer</em>]   [<b>min_snow_percent</b>=<em>integer</em>]   [--<b>help</b>]  [--<b>verbose</b>]  [--<b>quiet</b>]  [--<b>ui</b>] 
+</div>
+
+<div id="flags">
+<h3>Flags:</h3>
+<dl>
+<dt><b>-d</b></dt>
+<dd>Write temporary data to disk (default is to compute in memory) (comutation in memory is faster but may limit number of days that can be processed)</dd>
+
+<dt><b>--help</b></dt>
+<dd>Print usage summary</dd>
+<dt><b>--verbose</b></dt>
+<dd>Verbose module output</dd>
+<dt><b>--quiet</b></dt>
+<dd>Quiet module output</dd>
+<dt><b>--ui</b></dt>
+<dd>Force launching GUI dialog</dd>
+</dl>
+</div>
+
+<div id="parameters">
+<h3>Parameters:</h3>
+<dl>
+<dt><b>image_server</b>=<em>string</em></dt>
+<dd>URL to ArcGIS ImageServer Typically starts with "http://"</dd>
+<dd>Default: <em>http://gis3.nve.no/image/rest/services/ImageService</em></dd>
+
+<dt><b>dtm_service</b>=<em>string</em></dt>
+<dd>Name of the service of the ImageServer to query for DTM</dd>
+<dd>Default: <em>AuxDEM250</em></dd>
+
+<dt><b>snow_service</b>=<em>string</em></dt>
+<dd>Name of the service of the ImageServer to query for snow cover data time series</dd>
+<dd>Default: <em>S3_SLSTR_fsc_sa</em></dd>
+
+<dt><b>aoi</b>=<em>name</em>&nbsp;<b>[required]</b></dt>
+<dd>Path to an OGR-readable file with Area of Interest</dd>
+
+<dt><b>date_start</b>=<em>string</em></dt>
+<dd>First date (in ISO-format: YYYY-MM-DD) of the time series to compute snow cover for (defaults to yesterday)</dd>
+
+<dt><b>date_end</b>=<em>string</em></dt>
+<dd>Last date (in ISO-format: YYYY-MM-DD) of the time series to compute snow cover for (defaults to today)</dd>
+
+<dt><b>snow_bands</b>=<em>integer</em></dt>
+<dd>Altitude steps (bands) in meter to compute snow cover for</dd>
+<dd>Default: <em>250</em></dd>
+
+<dt><b>min_snow_percent</b>=<em>integer</em></dt>
+<dd>Minimum snow percent pre pixel to consider covered by snow</dd>
+<dd>Default: <em>20</em></dd>
+
+</dl>
+</div>
 <div class="toc">
 <h4 class="toc">Table of contents</h4>
 <ul class="toc">
@@ -30,28 +90,28 @@ This is mainly an example for how to deploy python scripts in actinia.
 <h2><a name="see-also">SEE ALSO</a></h2>
 
 <em>
-<a href="file:///usr/lib/grass74/docs/html/r.univar.html">r.mapcalc</a>
-<a href="file:///usr/lib/grass74/docs/html/t.rast.univar.html">r.mapcalc</a>
+<a href="file:///usr/lib/grass78/docs/html/r.univar.html">r.mapcalc</a>
+<a href="file:///usr/lib/grass78/docs/html/t.rast.univar.html">r.mapcalc</a>
 </em>
 
 <h2><a name="authors">AUTHORS</a></h2>
 
 NVE,<br>
 Stefan Blumentrath, <a href="https://nve.no">NVE</a><h2>SOURCE CODE</h2>
-<p>Available at: <a href="https://trac.osgeo.org/grass/browser/grass-addons/grass7/raster/r.snowcover.stats">r.snowcover.stats source code</a> (<a href="https://trac.osgeo.org/grass/log/grass-addons/grass7/raster/r.snowcover.stats">history</a>)</p>
+<p>Available at: <a href="https://trac.osgeo.org/grass/browser/grass-addons/grass7/raster/r.snowcover.stats">r.snowcover.stats source code</a> (<a href="https://trac.osgeo.org/grass/browser/grass-addons/grass7/raster/r.snowcover.stats">history</a>)</p>
 <hr class="header">
 <p>
-<a href="file:///usr/lib/grass74/docs/html/index.html">Main index</a> |
-<a href="file:///usr/lib/grass74/docs/html/raster.html">Raster index</a> |
-<a href="file:///usr/lib/grass74/docs/html/topics.html">Topics index</a> |
-<a href="file:///usr/lib/grass74/docs/html/keywords.html">Keywords index</a> |
-<a href="file:///usr/lib/grass74/docs/html/graphical_index.html">Graphical index</a> |
-<a href="file:///usr/lib/grass74/docs/html/full_index.html">Full index</a>
+<a href="file:///usr/lib/grass78/docs/html/index.html">Main index</a> |
+<a href="file:///usr/lib/grass78/docs/html/raster.html">Raster index</a> |
+<a href="file:///usr/lib/grass78/docs/html/topics.html">Topics index</a> |
+<a href="file:///usr/lib/grass78/docs/html/keywords.html">Keywords index</a> |
+<a href="file:///usr/lib/grass78/docs/html/graphical_index.html">Graphical index</a> |
+<a href="file:///usr/lib/grass78/docs/html/full_index.html">Full index</a>
 </p>
 <p>
-&copy; 2003-2018
+&copy; 2003-2019
 <a href="http://grass.osgeo.org">GRASS Development Team</a>,
-GRASS GIS 7.4.0 Reference Manual
+GRASS GIS 7.8.2 Reference Manual
 </p>
 
 </div>
