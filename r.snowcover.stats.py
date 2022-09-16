@@ -543,9 +543,9 @@ def main():
 
     # Read images to array and compute average value over available images
     for i in images.values():
-        ds = gdal.Open(f"/vsicurl/{i}")
-        ds = np.array(ds.ReadAsArray())
-        np_snow += np.where((ds > 100) & (ds <= 200), ds - 100, 0)
+        img_ds = gdal.Open(f"/vsicurl/{i}")
+        img_ds = np.array(ds.ReadAsArray())
+        np_snow += np.where((img_ds > 100) & (img_ds <= 200), img_ds - 100, 0)
     np_snow = np_snow / len(images)
 
     try:
@@ -693,13 +693,13 @@ def main():
                         res_dict["snow_min_percentage"]
                     )
                 )
-        except Exception as err:
+        except RuntimeError as err:
             gscript.fatal("Feilet ved DTM-analyse: {}".format(err))
 
         print(json.dumps(res_dict))
         # return json.dumps(res_dict)
 
-    except Exception as err:
+    except RuntimeError as err:
         gscript.fatal("Feilet: {}".format(err))
 
 
