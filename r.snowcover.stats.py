@@ -545,8 +545,8 @@ def main():
     for i in images.values():
         img_ds = gdal.Open(f"/vsicurl/{i}")
         img_ds = np.array(img_ds.ReadAsArray())
-        img_ds = None
         np_snow += np.where((img_ds > 100) & (img_ds <= 200), img_ds - 100, 0)
+        img_ds = None
     np_snow = np_snow / len(images)
 
     try:
