@@ -39,7 +39,7 @@ class TestBasic(TestCase):
         # We will use specific computational region for our process in case
         # something else is running in parallel with our tests.
         # cls.use_temp_region()
-        # Use of of the inputs to set computational region
+        # Use of the inputs to set computational region
         # cls.runModule("g.region", raster=cls.test_input_1)
 
     @classmethod
@@ -80,7 +80,7 @@ class TestBasic(TestCase):
         is tested separatelly.
 
         Note that this does not cover all the possible combinations, but it
-        tries to simulate most of possible user errors and it should cover
+        tries to simulate most of the possible user errors, and it should cover
         most of the implementation.
         """
         self.assertModuleFail(
