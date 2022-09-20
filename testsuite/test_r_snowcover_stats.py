@@ -22,7 +22,7 @@ class TestBasic(TestCase):
     """The main (and only) test case for the r.snowcover.stats module"""
 
     # Raster maps be used as inputs (they exist in the NC SPM sample location)
-    aoi = "./aoi.geojson"
+    aoi = "aoi.geojson"
     date_start = "2022-08-22"
     date_end = "2022-08-25"
 
@@ -65,6 +65,18 @@ class TestBasic(TestCase):
         self.assertModule(
             "r.snowcover.stats",
             aoi=self.aoi,
+            date_start=self.date_start,
+            date_end=self.date_end,
+        )
+        # check to see if output is in mapset
+        # self.assertRasterExists(self.output, msg="Output was not created")
+
+    def test_weburl(self):
+        """Check that the module runs"""
+        # run the watershed module
+        self.assertModule(
+            "r.snowcover.stats",
+            aoi=f"https://raw.githubusercontent.com/ninsbl/r.snowcover.stats/master/testsuite/{self.aoi}",
             date_start=self.date_start,
             date_end=self.date_end,
         )
