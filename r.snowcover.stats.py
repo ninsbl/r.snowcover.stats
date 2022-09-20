@@ -465,7 +465,9 @@ def main():
     # Currently not used
     # not_in_memory = flags["d"]
 
-    if not Path(aoi).exists():
+    if any([protocol in aoi for protocol in ["http", "ftp"]]):
+        aoi = f"/vsicurl/{aoi}"
+    elif not Path(aoi).exists():
         gscript.fatal(_("Finner ikke {}. Sjekk filnavn og sti.".format(aoi)))
 
     try:
