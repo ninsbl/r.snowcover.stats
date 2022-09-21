@@ -95,10 +95,6 @@ class TestBasic(TestCase):
         """
         self.assertModuleFail(
             "r.snowcover.stats",
-            msg="The aoi parameter should be required",
-        )
-        self.assertModuleFail(
-            "r.snowcover.stats",
             date_start=self.date_end,
             date_end=self.date_start,
             msg="The start date has to be before end date",
