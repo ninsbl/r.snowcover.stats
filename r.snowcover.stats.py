@@ -550,7 +550,7 @@ def main():
         ds = np.array(ds.ReadAsArray())
         np_snow += np.where((ds > 100) & (ds <= 200), ds - 100, 0)
         np_snow_valid_count += np.where((ds > 100) & (ds <= 200), 1, 0).astype(np.bool_)
-    np_snow = np.divide(np_snow, np_snow_valid_count, where=np_snow_valid_count!=0)
+    np_snow = np.divide(np_snow, np_snow_valid_count, where=np_snow_valid_count != 0)
 
     try:
         # Ekstra test siden extract by mask ikke feiler i Desktop
