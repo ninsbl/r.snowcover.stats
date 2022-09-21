@@ -542,14 +542,15 @@ def main():
 
     # Create an empty numpy array
     np_snow = np.zeros(raster_mask.shape)
+    np_snow_valid_count = np.zeros(raster_mask.shape, dtype=np.byte)
 
     # Read images to array and compute average value over available images
     for i in images.values():
-        img_ds = gdal.Open(f"/vsicurl/{i}")
-        img_ds = np.array(img_ds.ReadAsArray())
-        np_snow += np.where((img_ds > 100) & (img_ds <= 200), img_ds - 100, 0)
-        img_ds = None
-    np_snow = np_snow / len(images)
+        ds = gdal.Open(f"/vsicurl/{i}")
+        ds = np.array(ds.ReadAsArray())
+        np_snow += np.where((ds > 100) & (ds <= 200), ds - 100, 0)
+        np_snow_valid_count += np.where((ds > 100) & (ds <= 200), 1, 0).astype(np.bool_)
+    np_snow = np.divide(np_snow, np_snow_valid_count, where=np_snow_valid_count!=0)
 
     try:
         # Ekstra test siden extract by mask ikke feiler i Desktop
