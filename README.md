@@ -9,6 +9,9 @@
 
 This is an example of a Python script to run in actinia using GRASS GIS parser and deployment
 
+Documentation of the script is generated in a github action and available here:
+https://ninsbl.github.io/r.snowcover.stats/
+
 ### Getting the GitHub Actions work
 
 If you have the repository on GitHub, you can also reuse the GitHub
